@@ -1,0 +1,30 @@
+---
+import { getCollection, CollectionEntry } from 'astro:content'
+import type { GetStaticPaths } from 'astro'
+import BlogLayout from '../layouts/BlogLayout.astro'
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getCollection('blog')
+  return posts
+    .filter((post) => post.data.draft === false)
+    .map((post) => ({
+      params: { post: post.slug },
+      props: post,
+    }))
+}
+
+interface Props {
+  render():
+    | { Content: any; remarkPluginFrontmatter: any }
+    | PromiseLike<{ Content: any; remarkPluginFrontmatter: any }>
+  data: any
+  post: CollectionEntry<'blog'>
+}
+const post = Astro.props
+const { Content, remarkPluginFrontmatter } = await post.render()
+post.data.minutesRead = remarkPluginFrontmatter.minutesRead
+---
+
+<div>
+  <Content />
+</div>
