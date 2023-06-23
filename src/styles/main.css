@@ -17,6 +17,10 @@ body {
   --border-border-color-primary: white;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .theme-light .search-highlighted {
   background: #f0fff4;
 }
