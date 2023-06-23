@@ -6,4 +6,7 @@ import mdx from '@astrojs/mdx'
 
 export default defineConfig({
   integrations: [tailwind(), sitemap(), mdx()],
+  experimental: {
+    assets: true,
+  },
 })
