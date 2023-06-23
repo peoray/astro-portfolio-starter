@@ -1,6 +1,9 @@
 ---
 import { getCollection, CollectionEntry } from 'astro:content'
 
+import PostCard from '../components/PostCard.astro'
+import Layout from '../layouts/Layout.astro'
+
 // Get all entries from a collection. Requires the name of the collection as an argument.
 const posts: CollectionEntry<'blog'>[] = (await getCollection('blog'))
   .filter((post) => post.data.draft === false)
@@ -10,10 +13,11 @@ await Promise.all(
   posts.map(async (post) => {
     const { remarkPluginFrontmatter } = await post.render()
     post.data.minutesRead = remarkPluginFrontmatter.minutesRead
-    console.log(post)
     return post
   })
 )
 ---
 
-<p>Blog</p>
+<Layout title="Welcome to Astro">
+  <PostCard posts={posts} />;
+</Layout>
