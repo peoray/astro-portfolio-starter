@@ -1,0 +1,19 @@
+---
+import { getCollection, CollectionEntry } from 'astro:content'
+
+// Get all entries from a collection. Requires the name of the collection as an argument.
+const posts: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+  .filter((post) => post.data.draft === false)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+await Promise.all(
+  posts.map(async (post) => {
+    const { remarkPluginFrontmatter } = await post.render()
+    post.data.minutesRead = remarkPluginFrontmatter.minutesRead
+    console.log(post)
+    return post
+  })
+)
+---
+
+<p>Blog</p>
