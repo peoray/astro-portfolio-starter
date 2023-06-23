@@ -5,7 +5,13 @@ import sitemap from '@astrojs/sitemap'
 import mdx from '@astrojs/mdx'
 
 export default defineConfig({
-  integrations: [tailwind(), sitemap(), mdx()],
+  integrations: [
+    tailwind({
+      applyBaseStyles: false,
+    }),
+    sitemap(),
+    mdx(),
+  ],
   experimental: {
     assets: true,
   },
