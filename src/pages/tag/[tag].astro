@@ -1,0 +1,37 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import PostCard from '../../components/PostCard.astro'
+
+import { getCollection, CollectionEntry } from 'astro:content'
+
+export async function getStaticPaths() {
+  const posts: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+    .filter((post) => post.data.draft === false)
+    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+  const uniqueTags = [...new Set(posts.map((post) => post.data.tags).flat())]
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = posts.filter((post) => post.data.tags.includes(tag))
+    return {
+      params: { tag: tag },
+      props: { posts: filteredPosts },
+    }
+  })
+}
+const { tag } = Astro.params
+const { posts } = Astro.props
+
+posts.map(async (post: any) => {
+  const { remarkPluginFrontmatter } = await post.render()
+  post.data.minutesRead = remarkPluginFrontmatter.minutesRead
+  return post
+})
+---
+
+<Layout title="Tag">
+  <div class="container-inner mx-auto my-16">
+    <h2 class="text-4xl font-bold mb-8 border-b">Tag: {tag}</h2>
+    <PostCard posts={posts} />
+  </div>
+</Layout>

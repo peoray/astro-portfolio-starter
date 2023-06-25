@@ -4,41 +4,39 @@ import { formatDate } from '../utils'
 const { posts } = Astro.props
 ---
 
-<div class="container-inner mx-auto py-16">
-  {
-    posts.map(
-      (post: {
-        slug: string
-        data: { title: any; description: any; pubDate: any; minutesRead: any }
-      }) => {
-        const { title, description, pubDate, minutesRead } = post.data
-        return (
-          <div class="post border-gray-400 border-b mb-12">
-            <h2 class="text-3xl font-bold">
-              <a href={`/${post.slug}`} class="text-copy-primary">
-                {title}
-              </a>
-            </h2>
+{
+  posts.map(
+    (post: {
+      slug: string
+      data: { title: any; description: any; pubDate: any; minutesRead: any }
+    }) => {
+      const { title, description, pubDate, minutesRead } = post.data
+      return (
+        <div class="post border-gray-400 border-b mb-12">
+          <h2 class="text-3xl font-bold">
+            <a href={`/${post.slug}`} class="text-copy-primary">
+              {title}
+            </a>
+          </h2>
 
-            <div class="text-copy-secondary mb-4">
-              <time datetime={new Date(pubDate).toISOString()}>
-                <time>{formatDate(pubDate)}</time>
+          <div class="text-copy-secondary mb-4">
+            <time datetime={new Date(pubDate).toISOString()}>
+              <time>{formatDate(pubDate)}</time>
 
-                <span> &middot; </span>
-                <span>{minutesRead} min read</span>
-              </time>
-            </div>
-
-            <div class="text-lg mb-4">{description}</div>
-
-            <div class="mb-8">
-              <a href={`/${post.slug}`} class="font-bold uppercase">
-                Read More
-              </a>
-            </div>
+              <span> &middot; </span>
+              <span>{minutesRead} min read</span>
+            </time>
           </div>
-        )
-      }
-    )
-  }
-</div>
+
+          <div class="text-lg mb-4">{description}</div>
+
+          <div class="mb-8">
+            <a href={`/${post.slug}`} class="font-bold uppercase">
+              Read More
+            </a>
+          </div>
+        </div>
+      )
+    }
+  )
+}
