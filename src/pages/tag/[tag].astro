@@ -22,11 +22,13 @@ export async function getStaticPaths() {
 const { tag } = Astro.params
 const { posts } = Astro.props
 
-posts.map(async (post: any) => {
-  const { remarkPluginFrontmatter } = await post.render()
-  post.data.minutesRead = remarkPluginFrontmatter.minutesRead
-  return post
-})
+await Promise.all(
+  posts.map(async (post: any) => {
+    const { remarkPluginFrontmatter } = await post.render()
+    post.data.minutesRead = remarkPluginFrontmatter.minutesRead
+    return post
+  })
+)
 ---
 
 <Layout title="Tag">
