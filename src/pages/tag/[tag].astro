@@ -1,8 +1,10 @@
 ---
+import { getCollection, CollectionEntry } from 'astro:content'
+
 import Layout from '../../layouts/Layout.astro'
 import PostCard from '../../components/PostCard.astro'
 
-import { getCollection, CollectionEntry } from 'astro:content'
+import { slugify, deslugify } from '../../utils'
 
 export async function getStaticPaths() {
   const posts: CollectionEntry<'blog'>[] = (await getCollection('blog'))
@@ -14,7 +16,7 @@ export async function getStaticPaths() {
   return uniqueTags.map((tag) => {
     const filteredPosts = posts.filter((post) => post.data.tags.includes(tag))
     return {
-      params: { tag: tag },
+      params: { tag: slugify(tag) },
       props: { posts: filteredPosts },
     }
   })
@@ -33,7 +35,7 @@ await Promise.all(
 
 <Layout title="Tag">
   <div class="container-inner mx-auto my-16">
-    <h2 class="text-4xl font-bold mb-8 border-b">Tag: {tag}</h2>
+    <h2 class="text-4xl font-bold mb-8 border-b">Tag: {deslugify(tag)}</h2>
     <PostCard posts={posts} />
   </div>
 </Layout>
