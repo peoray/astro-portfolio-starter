@@ -1,17 +1,14 @@
 ---
-import { CollectionEntry } from 'astro:content'
-
-// import PostTags from '../post-tags/PostTags.astro'
-// import PostMeta from '../post-meta/PostMeta.astro'
+import { formatDate } from '../utils'
 
 const { posts } = Astro.props
-console.log(posts)
 ---
 
 <div class="container-inner mx-auto py-16">
   {
     posts.map(
       (post: {
+        slug: string
         data: { title: any; description: any; pubDate: any; minutesRead: any }
       }) => {
         const { title, description, pubDate, minutesRead } = post.data
@@ -25,13 +22,7 @@ console.log(posts)
 
             <div class="text-copy-secondary mb-4">
               <time datetime={new Date(pubDate).toISOString()}>
-                <time>
-                  {pubDate.toLocaleDateString('en-us', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </time>
+                <time>{formatDate(pubDate)}</time>
 
                 <span> &middot; </span>
                 <span>{minutesRead} min read</span>
