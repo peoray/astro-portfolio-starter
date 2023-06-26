@@ -1,18 +1,24 @@
 ---
+const { paginate } = Astro.props
+const { currentPage, size } = paginate
+const { current, next, prev } = paginate.url
+
+const showPreviousPag = currentPage !== 1
+const showNextPage = currentPage !== size
 ---
 
 <div class="flex justify-between text-xl items-center">
-  <a
-    href="/"
-    :class="{ 'text-gray-400 hover:text-gray-400 cursor-not-allowed': !showPreviousPage }"
+  <a href={prev && prev} class:list={['', { 'not-active': !showPreviousPag }]}
     >&larr; Prev</a
   >
-  <div class="text-base">Page {0 + 1} of {0 + 3}</div>
-  <a
-    href="/"
-    class:list={[
-      'text-gray-400 hover:text-gray-400',
-      { 'cursor-not-allowed': !true },
-    ]}>Next &rarr;</a
+  <div class="text-base">Page {currentPage} of {size}</div>
+  <a href={next && next} class:list={['', { 'not-active': !showNextPage }]}
+    >Next &rarr;</a
   >
 </div>
+
+<style>
+  .not-active {
+    @apply cursor-not-allowed text-gray-400 hover:text-gray-400;
+  }
+</style>
