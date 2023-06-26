@@ -3,6 +3,7 @@ import { getCollection, CollectionEntry } from 'astro:content'
 
 import PostCard from '../components/PostCard.astro'
 import Layout from '../layouts/Layout.astro'
+import Pagination from '../components/Pagination.astro'
 
 // Get all entries from a collection. Requires the name of the collection as an argument.
 const posts: CollectionEntry<'blog'>[] = (await getCollection('blog'))
@@ -21,5 +22,6 @@ await Promise.all(
 <Layout title="Welcome to Astro">
   <div class="container-inner mx-auto py-16">
     <PostCard posts={posts} />
+    <Pagination />
   </div>
 </Layout>
