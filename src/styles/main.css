@@ -41,7 +41,7 @@ html {
   background: #2d3748;
 }
 
-.theme-dark {
+body[data-theme='dark'] {
   --bg-background-primary: #0d2438;
   --bg-background-secondary: #102c44;
   --bg-background-tertiary: #1e3951;

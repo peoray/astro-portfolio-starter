@@ -1,4 +1,6 @@
 ---
+import ThemeSwitcher from '../components/ThemeSwitcher.astro'
+
 import '../styles/main.css'
 export interface Props {
   title: string
@@ -29,7 +31,7 @@ const { title } = Astro.props
           class="container mx-auto flex flex-wrap justify-between items-center py-8"
         >
           <div>
-            <!-- TODO: THEME TOGGLE -->
+            <h1 class="text-4xl">LOGO</h1>
           </div>
 
           <div class="block lg:hidden">
@@ -51,6 +53,9 @@ const { title } = Astro.props
           <ul
             class="uppercase tracking-wide font-bold w-full block flex-grow lg:space-x-8 space-y-6 lg:space-y-0 lg:flex lg:flex-initial lg:w-auto items-center mt-8 lg:mt-0"
           >
+            <li>
+              <ThemeSwitcher />
+            </li>
             <li class="mb-6 lg:mb-0">
               <a href="/#projects" class="text-copy-primary hover:text-gray-600"
                 >Projects</a
