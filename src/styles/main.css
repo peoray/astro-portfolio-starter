@@ -29,15 +29,11 @@ html {
   background: #f0fff4;
 }
 
-.theme-dark .markdown-body {
-  color: #24292e;
-}
-
-.theme-dark .search-highlighted {
+body[data-theme='dark'] .search-highlighted {
   background: #2d3748;
 }
 
-.theme-dark .search-hover:hover {
+body[data-theme='dark'] .search-hover:hover {
   background: #2d3748;
 }
 
@@ -54,11 +50,11 @@ body[data-theme='dark'] {
   --border-border-color-primary: #1a202c;
 }
 
-.theme-dark .markdown-body {
-  color: #cbd5e0;
+body[data-theme='dark'] .markdown-body {
+  color: #cbd5e0 !important;
 }
 
-.theme-dark nav .active {
+body[data-theme='dark'] nav .active {
   @apply border-white border-b;
 }
 
