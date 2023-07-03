@@ -11,6 +11,14 @@ export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
     .filter((post) => post.data.draft === false)
     .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 
+  await Promise.all(
+    posts.map(async (post) => {
+      const { remarkPluginFrontmatter } = await post.render()
+      post.data.minutesRead = remarkPluginFrontmatter.minutesRead
+      return post
+    })
+  )
+
   return paginate(posts, {
     pageSize: 3,
   })

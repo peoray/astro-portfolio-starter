@@ -1,7 +1,7 @@
 ---
 const { paginate } = Astro.props
 const { currentPage, size } = paginate
-const { current, next, prev } = paginate.url
+const { next, prev } = paginate.url
 
 const showPreviousPag = currentPage !== 1
 const showNextPage = currentPage !== size
