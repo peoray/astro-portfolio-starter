@@ -1,35 +1,65 @@
-# Astro Starter Kit: Basics
+# Astro Portfolio Starter
+
+> A simple portfolio theme for Astro powered by Tailwind CSS.
+
+## 🔥 Features
+- [x] Beautiful and simple design.
+- [x] Easy configuration
+- [x] Markdown & MDX support
+- [x] Search functionality
+- [x] Tags support.
+- [x] Dark / Light toggle.
+- [x] 100/100 Lighthouse performance
+- [x] SEO-friendly with canonical URLs and OpenGraph data
+- [x] Uses [`astro:assets`](https://docs.astro.build/en/guides/assets/) for optimized images
+- [x] Sitemap and RSS feed support
+- [x] Blog drafts
+- [x] Blog pagination
+
+## 🌍 Demo URL
+
+https://astro-portfolio-starter.netlify.app/
+
+
+## 👨🏾‍💻 Getting started
 
 ```
-npm create astro@latest -- --template basics
+npm create astro@latest -- --template peoray/astro-portfolio-starter
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+### 👨🏾‍💻 Configuration
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Edit the values in `src/consts.ts` to match your brand or company:
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+```ts
 
+// site artefacts
+export const SITE_TITLE = 'Astro Portfolio Starter'
+export const SITE_URL = 'https://astro-portfolio-starter.netlify.app/'
+export const SITE_DESCRIPTION = 'Welcome to my personal website!'
+export const PAGE_DESCRIPTION =
+  'A simple portfolio theme for Astro powered by Tailwind CSS'
+export const AUTHOR = 'Emmanuel Raymond'
+export const IMAGE = '/images/photo.png'
+export const IMAGE_ALT = 'Photo of an avatar'
+
+// social links
+export const EMAIL = 'mailto:peoray@yahoo.com'
+export const TWITTER = 'https://twitter.com/peoray_'
+export const GITHUB = 'https://github.com/peoray/astro-portfolio-starter'
+export const YOUTUBE = 'https://youtube.com'
+export const INSTAGRAM = 'https://instagram.com'
+
+
+```
+
+Change any lines or add more in the `<head>` tags in `src/components/MetaTags.astro`, like the favicon:
+
+```html
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+```
 
 ## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
 
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
@@ -52,4 +82,16 @@ All commands are run from the root of the project, from a terminal:
 
 ## 👀 Want to learn more?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Feel free to check the [Astro documentation](https://docs.astro.build) or jump into the [Discord server](https://astro.build/chat).
+
+## 💙 Acknowledgement
+
+This theme is a port of [Gridsome Portfolio Starter](https://github.com/drehimself/gridsome-portfolio-starter) made by Andre Madarang.
+
+## ✨ Contributing
+
+Feel free to open an issue if you find bugs or want to request new features.
+
+## 📜 License
+
+Licensed under the [MIT License](https://opensource.org/license/mit/), Copyright © Emmanuel Raymond 2023
