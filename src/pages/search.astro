@@ -1,0 +1,27 @@
+---
+import { getCollection, CollectionEntry } from 'astro:content'
+
+import Layout from '../layouts/Layout.astro'
+
+import SearchInput from '../components/SearchInput'
+
+const posts: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+  .filter((post) => post.data.draft === false)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
+Promise.all(
+  posts.map(async (post) => {
+    const { remarkPluginFrontmatter } = await post.render()
+    post.data.minutesRead = remarkPluginFrontmatter.minutesRead
+    return post
+  })
+)
+
+const title = `Search | Astro Portolio `
+---
+
+<Layout title={title}>
+  <!-- <div class="mx-auto container-inner"> -->
+  <SearchInput posts={posts} client:load />
+  <!-- </div> -->
+</Layout>

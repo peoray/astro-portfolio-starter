@@ -1,7 +1,15 @@
 ---
+import { getCollection, CollectionEntry } from 'astro:content'
+
+import SearchInput from '../components/SearchInput'
 import ThemeSwitcher from '../components/ThemeSwitcher.astro'
 
 import '../styles/main.css'
+
+const posts: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+  .filter((post) => post.data.draft === false)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+
 export interface Props {
   title: string
 }
@@ -53,9 +61,6 @@ const { title } = Astro.props
           <ul
             class="uppercase tracking-wide font-bold w-full block flex-grow lg:space-x-8 space-y-6 lg:space-y-0 lg:flex lg:flex-initial lg:w-auto items-center mt-8 lg:mt-0"
           >
-            <li>
-              <ThemeSwitcher />
-            </li>
             <li class="mb-6 lg:mb-0">
               <a href="/#projects" class="text-copy-primary hover:text-gray-600"
                 >Projects</a
@@ -75,6 +80,27 @@ const { title } = Astro.props
               <a href="/blog" class="text-copy-primary hover:text-gray-600"
                 >Blog</a
               >
+            </li>
+
+            <li>
+              <a href="/search" class="text-copy-primary hover:text-gray-600">
+                <svg
+                  fill="currentColor"
+                  class="w-6 h-6"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                >
+                  <path
+                    class="heroicon-ui"
+                    d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+                  ></path>
+                </svg>
+              </a>
+            </li>
+
+            <li>
+              <ThemeSwitcher />
             </li>
           </ul>
         </nav>
