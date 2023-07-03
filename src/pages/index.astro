@@ -4,10 +4,11 @@ import Contact from '../components/Contact.astro'
 import Hero from '../components/Hero.astro'
 import Newsletter from '../components/Newsletter.astro'
 import ProjectListing from '../components/ProjectListing.astro'
+import { SITE_TITLE } from '../consts'
 import Layout from '../layouts/Layout.astro'
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title={SITE_TITLE}>
   <Hero />
   <ProjectListing />
   <About />

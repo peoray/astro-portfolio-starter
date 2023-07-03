@@ -31,9 +31,10 @@ await Promise.all(
     return post
   })
 )
+const title = `Tag | Astro Portolio `
 ---
 
-<Layout title="Tag">
+<Layout title={title}>
   <div class="container-inner mx-auto my-16">
     <h2 class="text-4xl font-bold mb-8 border-b">Tag: {deslugify(tag)}</h2>
     <PostCard posts={posts} />
