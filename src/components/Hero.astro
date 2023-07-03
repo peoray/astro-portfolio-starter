@@ -2,6 +2,7 @@
 import developer from '../assets/images/developer.svg'
 import mind_map from '../assets/images/mind_map.svg'
 import code_review from '../assets/images/code_review.svg'
+import { GITHUB, YOUTUBE } from '../consts'
 ---
 
 <div
@@ -21,15 +22,14 @@ import code_review from '../assets/images/code_review.svg'
 
 <div class="container-inner mx-auto">
   <p class="text-lg sm:text-xl">
-    This astro theme was forked from my <a href="https://peoray.dev"
-      >personal website</a
+    This astro theme was forked from my <a
+      href="https://peoray.dev"
+      target="_blank">personal website</a
     >. I added more features and decided to release it as an open source
-    project. Check it out on <a
-      href="https://github.com/peoray/astro-portfolio-starter">GitHub</a
-    > or check out the <a href="https://www.youtube.com/watch?v=uHo6o1TNQeE"
-      >screencast I did</a
-    >. Feel free to use it for your own site or projects! Lorem, ipsum dolor sit
-    amet consectetur adipisicing elit. Minima, repellat. Dolores iure, quas
+    project. Check it out on <a href={GITHUB} target="_blank">GitHub</a> or check
+    out the <a href={YOUTUBE} target="_blank">screencast I did</a>. Feel free to
+    use it for your own site or projects! Lorem, ipsum dolor sit amet
+    consectetur adipisicing elit. Minima, repellat. Dolores iure, quas
     perspiciatis rerum quaerat atque eum repellat autem.
   </p>
 
